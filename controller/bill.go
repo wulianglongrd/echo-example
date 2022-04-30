@@ -2,6 +2,7 @@ package controller
 
 import (
 	"github.com/labstack/echo/v4"
+	"github.com/wulianglongrd/echo-example/model"
 	"net/http"
 )
 
@@ -22,14 +23,10 @@ func (controller *billController) ChangeBill(c echo.Context) error {
 }
 
 func (controller *billController) RenderBill(c echo.Context) error {
-	bill := struct {
-		FeeName string `json:"fee_name"`
-		FeeType string `json:"fee_type"`
-		Fee     int    `json:"fee"`
-	}{
-		FeeName: "基础费",
-		FeeType: "basic_fee",
-		Fee:     100,
+	bill := model.Bill{
+		Name:  "基础费",
+		Type:  "basic_fee",
+		Value: 100,
 	}
 	return c.JSON(http.StatusOK, bill)
 }
